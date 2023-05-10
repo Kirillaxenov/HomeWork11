@@ -59,5 +59,40 @@ public class FilmTests {
         Film[] actual = manager.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    void shouldGetMovieQuantityLessThanLimit() {
+        FilmManager manager = new FilmManager(3);
+        Film film1 = new Film(1, "Bloodshot", "1", "action");
+        Film film2 = new Film(2, "Go", "2", "Animation");
+        manager.addFilm(film1);
+        manager.addFilm(film2);
+        Film[] expected = new Film[]{film2, film1};
+        Film[] actual = manager.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    void shouldGetMovieQuantityMoreThanLimit() {
+        FilmManager manager = new FilmManager(2);
+        Film film1 = new Film(1, "Bloodshot", "1", "action");
+        Film film2 = new Film(2, "Go", "2", "Animation");
+        Film film3 = new Film(3, "Gentlemen", "3", "action");
+        manager.addFilm(film1);
+        manager.addFilm(film2);
+        manager.addFilm(film3);
+        Film[] expected = new Film[]{film3, film2};
+        Film[] actual = manager.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    void shouldGetMovieQuantityEqualToLimit() {
+        FilmManager manager = new FilmManager(2);
+        Film film1 = new Film(1, "Bloodshot", "1", "action");
+        Film film2 = new Film(2, "Go", "2", "Animation");
+        manager.addFilm(film1);
+        manager.addFilm(film2);
+        Film[] expected = new Film[]{film2, film1};
+        Film[] actual = manager.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
 
